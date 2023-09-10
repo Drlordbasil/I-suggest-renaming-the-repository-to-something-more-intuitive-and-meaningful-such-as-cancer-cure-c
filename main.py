@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, confusion_matrix
 
+
 class CancerDataLoader:
     def load_data(self, file_path):
         """
@@ -21,6 +22,7 @@ class CancerDataLoader:
         y = data['target'].values
         return X, y
 
+
 class CancerDataPreprocessor:
     def preprocess_data(self, X, y):
         """
@@ -36,12 +38,14 @@ class CancerDataPreprocessor:
         - y_train: numpy array of shape (n_train_samples,), the training target values.
         - y_test: numpy array of shape (n_test_samples,), the testing target values.
         """
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.2, random_state=42)
+
         # Perform any necessary preprocessing steps
         # (e.g., feature scaling, missing value imputation, etc.)
-        
+
         return X_train, X_test, y_train, y_test
+
 
 class CancerModelTrainer:
     def train_model(self, X_train, y_train):
@@ -58,6 +62,7 @@ class CancerModelTrainer:
         classifier = SVC()
         classifier.fit(X_train, y_train)
         return classifier
+
 
 class CancerModelEvaluator:
     def evaluate_model(self, classifier, X_test, y_test):
@@ -77,6 +82,7 @@ class CancerModelEvaluator:
         report = classification_report(y_test, y_pred)
         cm = confusion_matrix(y_test, y_pred)
         return report, cm
+
 
 class CancerModelVisualizer:
     def visualize_results(self, report, cm):
@@ -101,6 +107,7 @@ class CancerModelVisualizer:
         # Print the classification report
         print(report)
 
+
 class CancerResearchProgram:
     def __init__(self):
         self.data_loader = CancerDataLoader()
@@ -114,16 +121,19 @@ class CancerResearchProgram:
         X, y = self.data_loader.load_data(file_path)
 
         # Preprocess the data
-        X_train, X_test, y_train, y_test = self.data_preprocessor.preprocess_data(X, y)
+        X_train, X_test, y_train, y_test = self.data_preprocessor.preprocess_data(
+            X, y)
 
         # Train the model
         classifier = self.model_trainer.train_model(X_train, y_train)
 
         # Evaluate the model
-        report, cm = self.model_evaluator.evaluate_model(classifier, X_test, y_test)
+        report, cm = self.model_evaluator.evaluate_model(
+            classifier, X_test, y_test)
 
         # Visualize the results
         self.model_visualizer.visualize_results(report, cm)
+
 
 # Define the file path of the cancer dataset
 file_path = "cancer_dataset.csv"
