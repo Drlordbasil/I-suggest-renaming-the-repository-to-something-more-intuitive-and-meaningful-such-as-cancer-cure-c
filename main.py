@@ -102,10 +102,13 @@ class CancerModelVisualizer:
         plt.yticks([0, 1], ['Benign', 'Malignant'])
         plt.xlabel('Predicted')
         plt.ylabel('True')
-        plt.show()
 
-        # Print the classification report
-        print(report)
+        # Save the plot to a file instead of showing it
+        plt.savefig('confusion_matrix.png')
+
+        # Print the classification report to a file instead of console
+        with open('classification_report.txt', 'w') as f:
+            print(report, file=f)
 
 
 class CancerResearchProgram:
